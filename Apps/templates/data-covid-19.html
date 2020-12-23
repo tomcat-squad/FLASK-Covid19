@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta http-equiv="refresh" content="60">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Tomcat Squad</title>
+	<script src="https://kit.fontawesome.com/bc6d3d8101.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Kosugi&display=swap');
+		h3{
+			font-family: 'Bebas Neue', cursive;
+		}
+		.waktu{
+			font-family: 'Righteous', cursive;
+		}
+		#goFS:-webkit-full-screen #goFS {
+			display: none;
+		}
+		#goFS:-moz-full-screen #goFS {
+			display: none;
+		}
+		#goFS:-ms-fullscreen #goFS {
+			display: none;
+		}
+		#goFS:fullscreen #goFS {
+			display: none;
+		}
+	</style>
+</head>
+
+<div id="layarPenuh" style="background-color: #eff6fd;">
+		<!-- Image and text -->
+	<nav class="navbar navbar-light bg-light justify-content-between" style="box-shadow: 1px 1px #cecece;">
+		<a style="font-family: 'Kosugi', sans-serif; font-size: 20px; margin-bottom: -10px;" class="navbar-brand" href="#" style="color: #3d3d3d;">
+			<img src="https://elearning.tomcatsquad.web.id/static/assets/img/tomcatlogo.png" width="50" height="50" class="d-inline-block align-top" alt="">
+			Tomcat Squad
+		</a>
+		<a id="goFS" class="btn">	
+			<i class="fas fa-expand"></i>
+		</a>
+	</nav>
+	<body style="background-color: #eff6fd;">
+		<div class="container">
+			<div class="judul text-center" style="color: #3d3d3d; margin-top: 30px;">
+				<h3 style="font-size: 45px;">DATA COVID-19 JAWA BARAT</h3>
+			</div>
+			<div>
+				<!-- ROW-1 OPEN -->
+				<div class="row justify-content-md-center">
+					<div class="col-sm-3">
+						<div class="card bg-danger img-card box-primary-shadow" style="padding: 2px; box-shadow: 0 4px 10px rgba(219, 123, 144, 0.733);">
+							<div class="card-body">
+								<div class="d-flex">
+									<div class="text-white">
+										<p class="text-white mb-0">TOTAL POSITIF</p>
+										<h2 class="mb-0 number-font">{{jawa_barat_positif}}</h2>
+										<p class="text-white mb-0">ORANG</p>
+									</div>
+									<div class="ml-auto">
+										<img src="static/mask.svg" width="50" height="50" alt="Positif">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- COL END -->
+					<div class="col-sm-3">
+						<div class="card bg-success img-card box-secondary-shadow" style="padding: 2px; box-shadow: 0 4px 10px rgba(126, 192, 126, 0.733);">
+							<div class="card-body">
+								<div class="d-flex">
+									<div class="text-white">
+										<p class="text-white mb-0">TOTAL SEMBUH</p>
+										<h2 class="mb-0 number-font">{{jawa_barat_sembuh}}</h2>
+										<p class="text-white mb-0">ORANG</p>
+									</div>
+									<div class="ml-auto">
+										<img src="static/happy.svg" width="50" height="50" alt="Positif">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- COL END -->
+					<div class="col-sm-3">
+						<div class="card  bg-secondary img-card box-success-shadow" style="padding: 2px; box-shadow: 0 4px 10px rgba(124, 124, 124, 0.733);">
+							<div class="card-body">
+								<div class="d-flex">
+									<div class="text-white">
+										<p class="text-white mb-0">TOTAL MENINGGAL</p>
+										<h2 class="mb-0 number-font">{{jawa_barat_meninggal}}</h2>
+										<p class="text-white mb-0">ORANG</p>
+									</div>
+									<div class="ml-auto">
+										<img src="static/cry.svg" width="50" height="50" alt="Positif">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<canvas id="line-chart" style="background-color: #ffffff; border-radius: 8; margin-top: 40px;" width="1000" height="450"></canvas>
+				<p>Update : {{waktu}}</p>
+				<footer>API : Ethical Hacker Indonesia</footer>
+			</div>
+		<!-- FULLSCREEN-->
+		<script>
+			var goFS = document.getElementById("goFS");
+			goFS.addEventListener("click", function() {
+				var layarPenuh = document.getElementById("layarPenuh");
+				layarPenuh.requestFullscreen();
+			}, false);
+		</script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script>
+		new Chart(document.getElementById("line-chart"), {
+		type: 'line',
+		data: {
+			labels: [
+				{%for row in statistik_jawa_barat%}
+					'{{row[4]}}',
+				{%endfor%}
+			],
+			datasets: [{ 
+				
+				data: [
+				{%for row in statistik_jawa_barat%}
+					'{{row[1]}}',
+				{%endfor%}
+				],
+				label: "Jawa Barat",
+				borderColor: "#3e95cd",
+				fill: false
+			
+			}
+			]
+		},
+		options: {
+			title: {
+			display: true,
+			text: 'STATISTIK DATA POSITIF COVID-19'
+			}
+		}
+		});
+
+		</script>
+	</body>
+</div>
+</html>
