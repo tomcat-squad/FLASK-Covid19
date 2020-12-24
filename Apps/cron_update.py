@@ -29,6 +29,12 @@ try:
     ]
     mycursor.executemany(sql_jawa_barat, val)
     mydb.commit()
-    print(mycursor.rowcount, "Berhasil Ditambahkan") 
+    print(mycursor.rowcount, "Berhasil Ditambahkan : ",time.strftime("%d %b")) 
 except:
-    print('Gagal, Data Sudah Ada')
+    sql_update_jawa_barat = "UPDATE jawa_barat SET kasus_positif = %s, kasus_sembuh = %s, kasus_meninggal = %s, tanggal = %s WHERE id = %s;"
+    up_jawa_barat = [
+        (jawa_barat_kasus_positif,jawa_barat_kasus_sembuh,jawa_barat_kasus_meninggal,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
+    ]
+    mycursor.executemany(sql_update_jawa_barat,up_jawa_barat)
+    mydb.commit()
+    print("Memperbarui Data : ",time.strftime("%d %b"))
