@@ -133,7 +133,6 @@
 				{%endfor%}
 			],
 			datasets: [{ 
-				
 				data: [
 				{%for row in statistik_jawa_barat%}
 					'{{row[1]}}',
@@ -142,7 +141,33 @@
 				label: "Jawa Barat",
 				borderColor: "#3e95cd",
 				fill: false
-			
+			}, { 
+				data: [
+				{%for row in statistik_jawa_tengah%}
+					'{{row[1]}}',
+				{%endfor%}
+				],
+				label: "Jawa Tengah",
+				borderColor: "#c45850",
+				fill: false
+			}, { 
+				data: [
+				{%for row in statistik_jawa_timur%}
+					'{{row[1]}}',
+				{%endfor%}
+				],
+				label: "Jawa Timur",
+				borderColor: "#3cba9f",
+				fill: false
+			}, { 
+				data: [
+				{%for row in statistik_dki_jakarta%}
+					'{{row[1]}}',
+				{%endfor%}
+				],
+				label: "DKI Jakarta",
+				borderColor: "#8e5ea2",
+				fill: false
 			}
 			]
 		},
