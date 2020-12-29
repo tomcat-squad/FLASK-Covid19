@@ -3,7 +3,7 @@
 
 <head>
 	<!-- Required meta tags -->
-	<meta http-equiv="refresh" content="60">
+	<meta http-equiv="refresh" content="60000">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Bootstrap CSS -->
@@ -20,6 +20,7 @@
 		}
 		.waktu{
 			font-family: 'Righteous', cursive;
+			color: #ffffff;
 		}
 		#goFS:-webkit-full-screen #goFS {
 			display: none;
@@ -36,9 +37,11 @@
 	</style>
 </head>
 
-<div id="layarPenuh" style="background-color: #eff6fd;">
+<div id="layarPenuh" style="background-color: #0f0c29;">
 		<!-- Image and text -->
-	<nav class="navbar navbar-dark bg-light justify-content-between" style="box-shadow: 1px 1px #cecece; background-color: #3e77b5 !important;">
+	<nav class="navbar navbar-dark bg-light justify-content-between" style="box-shadow: 1px 1px #ffffff; background: #0f0c29; background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+	background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+	">
 		<a style="font-family: 'Kosugi', sans-serif; font-size: 20px; margin-bottom: -10px;" class="navbar-brand" href="#" style="color: #3d3d3d;">
 			<img src="https://elearning.tomcatsquad.web.id/static/assets/img/tomcatlogo.png" width="50" height="50" class="d-inline-block align-top" alt="">
 			Tomcat Squad
@@ -47,9 +50,9 @@
 			<i class="fas fa-expand" style="color: #ffffff;"></i>
 		</a>
 	</nav>
-	<body style="background-color: #eff6fd;">
+	<body style="background-color: #0f0c29;">
 		<div class="container">
-			<div class="judul text-center" style="color: #3d3d3d; margin-top: 30px;">
+			<div class="judul text-center" style="color: #ffffff; margin-top: 30px;">
 				<h3 style="font-size: 45px;">DATA COVID-19 JAWA BARAT</h3>
 			</div>
 			<div>
@@ -106,7 +109,9 @@
 						</div>
 					</div>
 				</div>
-				<canvas id="line-chart" style="margin-top: 40px;" width="1000" height="420"></canvas>
+				<div style="background-color: #ffffff !important">
+					<canvas id="line-chart" style="margin-top: 40px;" width="1000" height="420"></canvas>
+				</div>
 				<div class="waktu">
 					<p><i class="far fa-clock"></i> {{waktu}}</p>
 				</div>
@@ -128,53 +133,53 @@
 		type: 'line',
 		data: {
 			labels: [
-				{%for row in statistik_jawa_barat%}
-					'{{row[4]}}',
+				{%for row in statistik_bekasi_barat%}
+					'{{row[2]}}',
 				{%endfor%}
 			],
 			datasets: [{ 
 				data: [
-				{%for row in statistik_jawa_barat%}
-					'{{row[1]}}',
-				{%endfor%}
-				],
-				label: "Jawa Barat",
-				borderColor: "#3e95cd",
-				fill: false
+					{%for row in statistik_bekasi_barat%}
+						'{{row[1]}}',
+					{%endfor%}
+					],
+					label: "Bekasi Barat",
+					borderColor: "#3e95cd",
+					fill: false
 			}, { 
 				data: [
-				{%for row in statistik_jawa_tengah%}
-					'{{row[1]}}',
-				{%endfor%}
-				],
-				label: "Jawa Tengah",
-				borderColor: "#c45850",
-				fill: false
+					{%for row in statistik_bekasi_selatan%}
+						'{{row[1]}}',
+					{%endfor%}
+					],
+					label: "Bekasi Selatan",
+					borderColor: "#c45850",
+					fill: false
 			}, { 
 				data: [
-				{%for row in statistik_jawa_timur%}
-					'{{row[1]}}',
-				{%endfor%}
-				],
-				label: "Jawa Timur",
-				borderColor: "#3cba9f",
-				fill: false
+					{%for row in statistik_bekasi_timur%}
+						'{{row[1]}}',
+					{%endfor%}
+					],
+					label: "Bekasi Timur",
+					borderColor: "#3cba9f",
+					fill: false
 			}, { 
 				data: [
-				{%for row in statistik_dki_jakarta%}
-					'{{row[1]}}',
-				{%endfor%}
-				],
-				label: "DKI Jakarta",
-				borderColor: "#8e5ea2",
-				fill: false
+					{%for row in statistik_bekasi_utara%}
+						'{{row[1]}}',
+					{%endfor%}
+					],
+					label: "Bekasi Utara",
+					borderColor: "#8e5ea2",
+					fill: false
 			}
 			]
 		},
 		options: {
 			title: {
 			display: true,
-			text: 'STATISTIK DATA POSITIF COVID-19'
+			text: 'STATISTIK DATA KONFIRMASI COVID-19'
 			}
 		}
 		});
@@ -182,7 +187,9 @@
 		</script>
 	</body>
 </div>
-<footer class="text-white text-center text-lg-start" style="margin-top: 15px; background-color: #3e77b5 !important;">
+<footer class="text-white text-center text-lg-start" style="margin-top: 15px; background: #0f0c29 ; background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+">
 	<!-- Grid container -->
 	<div class="container p-4">
 	  <!--Grid row-->
