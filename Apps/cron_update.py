@@ -1,33 +1,25 @@
 import mysql.connector,requests,json,datetime
 
 # Link API
-url = 'https://api.kawalcorona.com/indonesia/provinsi'
+url = 'https://corona.bekasikota.go.id/public/api/wilayahkecamatan'
 
-#Data Waktu
+# Data Waktu
 time = datetime.datetime.now()
 
 # Membuat Pemintaan Api
 response                     = requests.get(url)
 
-#DKI Jakarta
-dki_jakarta_kasus_positif     = response.json()[0]['attributes']['Kasus_Posi']
-dki_jakarta_kasus_sembuh      = response.json()[0]['attributes']['Kasus_Semb']
-dki_jakarta_kasus_meninggal   = response.json()[0]['attributes']['Kasus_Meni']
+#Bekasi Barat
+bekasi_barat_daily_konfirmasi   = response.json()['data'][4]['kec_daily_konfirmasi_count']
 
-#Jawa Timur
-jawa_timur_kasus_positif     = response.json()[1]['attributes']['Kasus_Posi']
-jawa_timur_kasus_sembuh      = response.json()[1]['attributes']['Kasus_Semb']
-jawa_timur_kasus_meninggal   = response.json()[1]['attributes']['Kasus_Meni']
+#Bekasi Selatan
+bekasi_selatan_daily_konfirmasi = response.json()['data'][5]['kec_daily_konfirmasi_count']
 
-#Jawa Barat
-jawa_barat_kasus_positif     = response.json()[2]['attributes']['Kasus_Posi']
-jawa_barat_kasus_sembuh      = response.json()[2]['attributes']['Kasus_Semb']
-jawa_barat_kasus_meninggal   = response.json()[2]['attributes']['Kasus_Meni']
+#Bekasi Timur
+bekasi_timur_daily_konfirmasi   = response.json()['data'][6]['kec_daily_konfirmasi_count']
 
-#Jawa Tengah
-jawa_tengah_kasus_positif     = response.json()[3]['attributes']['Kasus_Posi']
-jawa_tengah_kasus_sembuh      = response.json()[3]['attributes']['Kasus_Semb']
-jawa_tengah_kasus_meninggal   = response.json()[3]['attributes']['Kasus_Meni']
+#Bekasi Utara
+bekasi_utara_daily_konfirmasi   = response.json()['data'][7]['kec_daily_konfirmasi_count']
 
 try:
     mydb = mysql.connector.connect(
@@ -38,68 +30,70 @@ try:
         )
     mycursor = mydb.cursor()
     
-    #DB Insert DKI Jakarta
-    sql_dki_jakarta = "INSERT INTO dki_jakarta (id,kasus_positif,kasus_sembuh,kasus_meninggal,tanggal) VALUES (%s,%s,%s,%s,%s)"
-    val_dki_jakarta = [
-        (time.strftime("%Y-%m-%d"), dki_jakarta_kasus_positif, dki_jakarta_kasus_sembuh, dki_jakarta_kasus_meninggal,time.strftime("%d %b"))
+    #DB Insert Bekasi Barat
+    sql_bekasi_barat = "INSERT INTO bekasi_barat (id,daily_konfirmasi,tanggal) VALUES (%s,%s,%s);"
+    val_bekasi_barat = [
+        (time.strftime("%Y-%m-%d"), bekasi_barat_daily_konfirmasi, time.strftime("%d %b"))
     ]
-    mycursor.executemany(sql_dki_jakarta, val_dki_jakarta)
-    print(mycursor.rowcount, "DKI Jakarta Ditambahkan : ",time.strftime("%d %b")) 
+    mycursor.executemany(sql_bekasi_barat, val_bekasi_barat)
+    print(mycursor.rowcount, "Bekasi Barat Ditambahkan : ",time.strftime("%d %b"))
 
-    #DB Insert Jawa Barat
-    sql_jawa_barat = "INSERT INTO jawa_barat (id,kasus_positif,kasus_sembuh,kasus_meninggal,tanggal) VALUES (%s,%s,%s,%s,%s)"
-    val_jawa_barat = [
-        (time.strftime("%Y-%m-%d"), jawa_barat_kasus_positif, jawa_barat_kasus_sembuh, jawa_barat_kasus_meninggal,time.strftime("%d %b"))
+    #DB Insert Bekasi Selatan
+    sql_bekasi_selatan = "INSERT INTO bekasi_selatan (id,daily_konfirmasi,tanggal) VALUES (%s,%s,%s);"
+    val_bekasi_selatan = [
+        (time.strftime("%Y-%m-%d"), bekasi_selatan_daily_konfirmasi, time.strftime("%d %b"))
     ]
-    mycursor.executemany(sql_jawa_barat, val_jawa_barat)
-    print(mycursor.rowcount, "Jawa Barat Ditambahkan : ",time.strftime("%d %b")) 
+    mycursor.executemany(sql_bekasi_selatan, val_bekasi_selatan)
+    print(mycursor.rowcount, "Bekasi Selatan Ditambahkan : ",time.strftime("%d %b"))
 
-    #DB Insert Jawa Tengah
-    sql_jawa_tengah = "INSERT INTO jawa_tengah (id,kasus_positif,kasus_sembuh,kasus_meninggal,tanggal) VALUES (%s,%s,%s,%s,%s)"
-    val_jawa_tengah = [
-        (time.strftime("%Y-%m-%d"), jawa_tengah_kasus_positif, jawa_tengah_kasus_sembuh, jawa_tengah_kasus_meninggal,time.strftime("%d %b"))
+    #DB Insert Bekasi Timur
+    sql_bekasi_timur = "INSERT INTO bekasi_timur (id,daily_konfirmasi,tanggal) VALUES (%s,%s,%s);"
+    val_bekasi_timur = [
+        (time.strftime("%Y-%m-%d"), bekasi_timur_daily_konfirmasi, time.strftime("%d %b"))
     ]
-    mycursor.executemany(sql_jawa_tengah, val_jawa_tengah)
-    print(mycursor.rowcount, "Jawa Tengah Ditambahkan : ",time.strftime("%d %b")) 
+    mycursor.executemany(sql_bekasi_timur, val_bekasi_timur)
+    print(mycursor.rowcount, "Bekasi Timur Ditambahkan : ",time.strftime("%d %b"))
 
-    #DB Insert Jawa Timur
-    sql_jawa_timur = "INSERT INTO jawa_timur (id,kasus_positif,kasus_sembuh,kasus_meninggal,tanggal) VALUES (%s,%s,%s,%s,%s)"
-    val_jawa_timur = [
-        (time.strftime("%Y-%m-%d"), jawa_timur_kasus_positif, jawa_timur_kasus_sembuh, jawa_timur_kasus_meninggal,time.strftime("%d %b"))
+    #DB Insert Bekasi Utara
+    sql_bekasi_utara = "INSERT INTO bekasi_utara (id,daily_konfirmasi,tanggal) VALUES (%s,%s,%s);"
+    val_bekasi_utara = [
+        (time.strftime("%Y-%m-%d"), bekasi_utara_daily_konfirmasi, time.strftime("%d %b"))
     ]
-    mycursor.executemany(sql_jawa_timur, val_jawa_timur)
-    print(mycursor.rowcount, "Jawa Timur Ditambahkan : ",time.strftime("%d %b")) 
+    mycursor.executemany(sql_bekasi_utara, val_bekasi_utara)
+    print(mycursor.rowcount, "Bekasi Utara Ditambahkan : ",time.strftime("%d %b"))
+
     mydb.commit()
 except:
-    #DB Update DKI Jakarta
-    sql_update_dki_jakarta = "UPDATE dki_jakarta SET kasus_positif = %s, kasus_sembuh = %s, kasus_meninggal = %s, tanggal = %s WHERE id = %s;"
-    up_dki_jakarta  = [
-        (dki_jakarta_kasus_positif,dki_jakarta_kasus_sembuh,dki_jakarta_kasus_meninggal,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
+    #DB Update Bekasi Barat
+    sql_bekasi_barat    = "UPDATE bekasi_barat SET daily_konfirmasi = %s, tanggal = %s WHERE id = %s;"
+    up_bekasi_barat     = [
+        (bekasi_barat_daily_konfirmasi,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
     ]
-    mycursor.executemany(sql_update_dki_jakarta,up_dki_jakarta)
-    print("Memperbarui Data DKI Jakarta: ",time.strftime("%d %b"))
+    mycursor.executemany(sql_bekasi_barat,up_bekasi_barat)
+    print("Memperbarui Data Bekasi Barat : ",time.strftime("%d %b"))
 
-    #DB Update Jawa Barat
-    sql_update_jawa_barat = "UPDATE jawa_barat SET kasus_positif = %s, kasus_sembuh = %s, kasus_meninggal = %s, tanggal = %s WHERE id = %s;"
-    up_jawa_barat = [
-        (jawa_barat_kasus_positif,jawa_barat_kasus_sembuh,jawa_barat_kasus_meninggal,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
+    #DB Update Bekasi Selatan
+    sql_bekasi_selatan    = "UPDATE bekasi_selatan SET daily_konfirmasi = %s, tanggal = %s WHERE id = %s;"
+    up_bekasi_selatan     = [
+        (bekasi_selatan_daily_konfirmasi,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
     ]
-    mycursor.executemany(sql_update_jawa_barat,up_jawa_barat)
-    print("Memperbarui Data Jawa Barat: ",time.strftime("%d %b"))
+    mycursor.executemany(sql_bekasi_selatan,up_bekasi_selatan)
+    print("Memperbarui Data Bekasi Selatan : ",time.strftime("%d %b"))
 
-    #DB Update Jawa Tengah
-    sql_update_jawa_tengah = "UPDATE jawa_tengah SET kasus_positif = %s, kasus_sembuh = %s, kasus_meninggal = %s, tanggal = %s WHERE id = %s;"
-    up_jawa_tengah = [
-        (jawa_tengah_kasus_positif,jawa_tengah_kasus_sembuh,jawa_tengah_kasus_meninggal,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
+    #DB Update Bekasi Timur
+    sql_bekasi_timur    = "UPDATE bekasi_timur SET daily_konfirmasi = %s, tanggal = %s WHERE id = %s;"
+    up_bekasi_timur     = [
+        (bekasi_timur_daily_konfirmasi,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
     ]
-    mycursor.executemany(sql_update_jawa_tengah,up_jawa_tengah)
-    print("Memperbarui Data Jawa Tengah: ",time.strftime("%d %b"))
+    mycursor.executemany(sql_bekasi_timur,up_bekasi_timur)
+    print("Memperbarui Data Bekasi Timur : ",time.strftime("%d %b"))
 
-    #DB Update Jawa Timur
-    sql_update_jawa_timur = "UPDATE jawa_timur SET kasus_positif = %s, kasus_sembuh = %s, kasus_meninggal = %s, tanggal = %s WHERE id = %s;"
-    up_jawa_timur = [
-        (jawa_timur_kasus_positif,jawa_timur_kasus_sembuh,jawa_timur_kasus_meninggal,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
+    #DB Update Bekasi Utara
+    sql_bekasi_utara    = "UPDATE bekasi_utara SET daily_konfirmasi = %s, tanggal = %s WHERE id = %s;"
+    up_bekasi_utara     = [
+        (bekasi_utara_daily_konfirmasi,time.strftime("%d %b"),time.strftime("%Y-%m-%d"))
     ]
-    mycursor.executemany(sql_update_jawa_timur,up_jawa_timur)
-    print("Memperbarui Data Jawa Timur: ",time.strftime("%d %b"))
+    mycursor.executemany(sql_bekasi_utara,up_bekasi_utara)
+    print("Memperbarui Data Bekasi Utara : ",time.strftime("%d %b"))
+
     mydb.commit()
