@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Des 2020 pada 09.03
+-- Waktu pembuatan: 30 Des 2020 pada 08.39
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.3.21
 
@@ -24,113 +24,109 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dki_jakarta`
+-- Struktur dari tabel `bekasi_barat`
 --
 
-CREATE TABLE `dki_jakarta` (
+CREATE TABLE `bekasi_barat` (
   `id` date NOT NULL,
-  `kasus_positif` int(11) NOT NULL,
-  `kasus_sembuh` int(11) NOT NULL,
-  `kasus_meninggal` int(11) NOT NULL,
+  `daily_konfirmasi` int(11) NOT NULL,
   `Tanggal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `dki_jakarta`
+-- Dumping data untuk tabel `bekasi_barat`
 --
 
-INSERT INTO `dki_jakarta` (`id`, `kasus_positif`, `kasus_sembuh`, `kasus_meninggal`, `Tanggal`) VALUES
-('2020-12-25', 169775, 152413, 3132, '25 Dec');
+INSERT INTO `bekasi_barat` (`id`, `daily_konfirmasi`, `Tanggal`) VALUES
+('2020-12-29', 25, '29 Dec'),
+('2020-12-30', 11, '30 Dec');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jawa_barat`
+-- Struktur dari tabel `bekasi_selatan`
 --
 
-CREATE TABLE `jawa_barat` (
+CREATE TABLE `bekasi_selatan` (
   `id` date NOT NULL,
-  `kasus_positif` int(11) NOT NULL,
-  `kasus_sembuh` int(11) NOT NULL,
-  `kasus_meninggal` int(11) NOT NULL,
+  `daily_konfirmasi` int(11) NOT NULL,
   `Tanggal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jawa_barat`
+-- Dumping data untuk tabel `bekasi_selatan`
 --
 
-INSERT INTO `jawa_barat` (`id`, `kasus_positif`, `kasus_sembuh`, `kasus_meninggal`, `Tanggal`) VALUES
-('2020-12-25', 77194, 63788, 1114, '25 Dec');
+INSERT INTO `bekasi_selatan` (`id`, `daily_konfirmasi`, `Tanggal`) VALUES
+('2020-12-29', 25, '29 Dec'),
+('2020-12-30', 20, '30 Dec');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jawa_tengah`
+-- Struktur dari tabel `bekasi_timur`
 --
 
-CREATE TABLE `jawa_tengah` (
+CREATE TABLE `bekasi_timur` (
   `id` date NOT NULL,
-  `kasus_positif` int(11) NOT NULL,
-  `kasus_sembuh` int(11) NOT NULL,
-  `kasus_meninggal` int(11) NOT NULL,
+  `daily_konfirmasi` int(11) NOT NULL,
   `Tanggal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jawa_tengah`
+-- Dumping data untuk tabel `bekasi_timur`
 --
 
-INSERT INTO `jawa_tengah` (`id`, `kasus_positif`, `kasus_sembuh`, `kasus_meninggal`, `Tanggal`) VALUES
-('2020-12-25', 75226, 49953, 3056, '25 Dec');
+INSERT INTO `bekasi_timur` (`id`, `daily_konfirmasi`, `Tanggal`) VALUES
+('2020-12-29', 42, '29 Dec'),
+('2020-12-30', 7, '30 Dec');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jawa_timur`
+-- Struktur dari tabel `bekasi_utara`
 --
 
-CREATE TABLE `jawa_timur` (
+CREATE TABLE `bekasi_utara` (
   `id` date NOT NULL,
-  `kasus_positif` int(11) NOT NULL,
-  `kasus_sembuh` int(11) NOT NULL,
-  `kasus_meninggal` int(11) NOT NULL,
+  `daily_konfirmasi` int(11) NOT NULL,
   `Tanggal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jawa_timur`
+-- Dumping data untuk tabel `bekasi_utara`
 --
 
-INSERT INTO `jawa_timur` (`id`, `kasus_positif`, `kasus_sembuh`, `kasus_meninggal`, `Tanggal`) VALUES
-('2020-12-25', 78385, 67208, 5399, '25 Dec');
+INSERT INTO `bekasi_utara` (`id`, `daily_konfirmasi`, `Tanggal`) VALUES
+('2020-12-29', 53, '29 Dec'),
+('2020-12-30', 5, '30 Dec');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `dki_jakarta`
+-- Indeks untuk tabel `bekasi_barat`
 --
-ALTER TABLE `dki_jakarta`
+ALTER TABLE `bekasi_barat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jawa_barat`
+-- Indeks untuk tabel `bekasi_selatan`
 --
-ALTER TABLE `jawa_barat`
+ALTER TABLE `bekasi_selatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jawa_tengah`
+-- Indeks untuk tabel `bekasi_timur`
 --
-ALTER TABLE `jawa_tengah`
+ALTER TABLE `bekasi_timur`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jawa_timur`
+-- Indeks untuk tabel `bekasi_utara`
 --
-ALTER TABLE `jawa_timur`
+ALTER TABLE `bekasi_utara`
   ADD PRIMARY KEY (`id`);
 COMMIT;
 
