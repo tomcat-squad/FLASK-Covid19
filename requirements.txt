@@ -1,0 +1,5 @@
+Flask==1.1.2 
+flask-mysql-connector==1.0.3
+requests==2.24.0
+DateTime==4.3
+mysql-connector-python==8.0.22
