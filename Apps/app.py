@@ -19,9 +19,9 @@ url = 'https://api.kawalcorona.com/indonesia/provinsi'
 # Membuat Pemintaan Api
 response          = requests.get(url)
 #Jawa Barat
-jawa_barat_kasus_positif     = response.json()[2]['attributes']['Kasus_Posi']
-jawa_barat_kasus_sembuh      = response.json()[2]['attributes']['Kasus_Semb']
-jawa_barat_kasus_meninggal   = response.json()[2]['attributes']['Kasus_Meni']
+jawa_barat_kasus_positif     = response.json()[1]['attributes']['Kasus_Posi']
+jawa_barat_kasus_sembuh      = response.json()[1]['attributes']['Kasus_Semb']
+jawa_barat_kasus_meninggal   = response.json()[1]['attributes']['Kasus_Meni']
 
 @app.route('/')
 def index():
